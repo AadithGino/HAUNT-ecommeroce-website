@@ -702,8 +702,8 @@ exports.paypalpost = async(req,res)=>{
           "payment_method": "paypal"
       },
       "redirect_urls": {
-          "return_url": "http://localhost:3001/success",
-          "cancel_url": "http://localhost:3001/cancel"
+          "return_url": "http://hauntjwellers.online/success",
+          "cancel_url": "http://hauntjwellers.online/cancel"
       },
       "transactions": [{
           "amount": {
