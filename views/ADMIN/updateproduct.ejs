@@ -1,0 +1,853 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/admin/additem"><h2>Add Product</h2></a>
+    <a href="/admin/userdisplay">view all products</a>
+    <a href="/edititem"><h2>Edit Product</h2></a>
+    <a href="/admin//displayproduct"><h2>Display Product</h2></a>
+</body>
+</html> 
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>Skydash Admin</title>
+   <!-- plugins:css -->
+   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Cropper -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../assets/stylesheets/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/additem.css">
+<link rel="stylesheet" href="/template/vendors/feather/feather.css">
+<link rel="stylesheet" href="/template//ti-icons/css/themify-icons.css">
+<link rel="stylesheet" href="/template/vendors/css/vendor.bundle.base.css">
+<script src="https://kit.fontawesome.com/0709d2b5ba.js" crossorigin="anonymous"></script>
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<link rel="stylesheet" href="/template/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="/template/vendors/ti-icons/css/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="/template/js/select.dataTables.min.css">
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="/template/css/vertical-layout-light/style.css">
+<!-- endinject -->
+<link rel="shortcut icon" href="/template//favicon.png" />
+ </head>
+ 
+ <body>
+   <div class="container-scroller">
+     <!-- partial:partials/_navbar.html -->
+     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+         <a class="navbar-brand brand-logo mr-5" href="/admin"><img src="https://cdn.shopify.com/s/files/1/1691/0147/t/3/assets/logo.png?v=128804864739962265131483514779" class="mr-2"
+             alt="logo" /></a>
+         <a class="navbar-brand brand-logo-mini" href="/admin"><img src="https://cdn.shopify.com/s/files/1/1691/0147/t/3/assets/logo.png?v=128804864739962265131483514779" alt="logo" /></a>
+       </div>
+     </nav>
+     <!-- partial -->
+     <div class="container-fluid page-body-wrapper">
+       <!-- partial:partials/_settings-panel.html -->
+       <div class="theme-setting-wrapper">
+         <div id="settings-trigger"><i class="ti-settings"></i></div>
+         <div id="theme-settings" class="settings-panel">
+           <i class="settings-close ti-close"></i>
+           <p class="settings-heading">SIDEBAR SKINS</p>
+           <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+             <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
+           </div>
+           <div class="sidebar-bg-options" id="sidebar-dark-theme">
+             <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
+           </div>
+           <p class="settings-heading mt-2">HEADER SKINS</p>
+           <div class="color-tiles mx-0 px-4">
+             <div class="tiles success"></div>
+             <div class="tiles warning"></div>
+             <div class="tiles danger"></div>
+             <div class="tiles info"></div>
+             <div class="tiles dark"></div>
+             <div class="tiles default"></div>
+           </div>
+         </div>
+       </div>
+       <div id="right-sidebar" class="settings-panel">
+         <i class="settings-close ti-close"></i>
+         <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+           <li class="nav-item">
+             <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
+               aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
+               aria-controls="chats-section">CHATS</a>
+           </li>
+         </ul>
+         <div class="tab-content" id="setting-content">
+           <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+             aria-labelledby="todo-section">
+             <div class="add-items d-flex px-3 mb-0">
+               <form class="form w-100">
+                 <div class="form-group d-flex">
+                   <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                   <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+                 </div>
+               </form>
+             </div>
+             <div class="list-wrapper px-3">
+               <ul class="d-flex flex-column-reverse todo-list">
+                 <li>
+                   <div class="form-check">
+                     <label class="form-check-label">
+                       <input class="checkbox" type="checkbox">
+                       Team review meeting at 3.00 PM
+                     </label>
+                   </div>
+                   <i class="remove ti-close"></i>
+                 </li>
+                 <li>
+                   <div class="form-check">
+                     <label class="form-check-label">
+                       <input class="checkbox" type="checkbox">
+                       Prepare for presentation
+                     </label>
+                   </div>
+                   <i class="remove ti-close"></i>
+                 </li>
+                 <li>
+                   <div class="form-check">
+                     <label class="form-check-label">
+                       <input class="checkbox" type="checkbox">
+                       Resolve all the low priority tickets due today
+                     </label>
+                   </div>
+                   <i class="remove ti-close"></i>
+                 </li>
+                 <li class="completed">
+                   <div class="form-check">
+                     <label class="form-check-label">
+                       <input class="checkbox" type="checkbox" checked>
+                       Schedule meeting for next week
+                     </label>
+                   </div>
+                   <i class="remove ti-close"></i>
+                 </li>
+                 <li class="completed">
+                   <div class="form-check">
+                     <label class="form-check-label">
+                       <input class="checkbox" type="checkbox" checked>
+                       Project review
+                     </label>
+                   </div>
+                   <i class="remove ti-close"></i>
+                 </li>
+               </ul>
+             </div>
+             <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
+             <div class="events pt-4 px-3">
+               <div class="wrapper d-flex mb-2">
+                 <i class="ti-control-record text-primary mr-2"></i>
+                 <span>Feb 11 2018</span>
+               </div>
+               <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+               <p class="text-gray mb-0">The total number of sessions</p>
+             </div>
+             <div class="events pt-4 px-3">
+               <div class="wrapper d-flex mb-2">
+                 <i class="ti-control-record text-primary mr-2"></i>
+                 <span>Feb 7 2018</span>
+               </div>
+               <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+               <p class="text-gray mb-0 ">Call Sarah Graves</p>
+             </div>
+           </div>
+           <!-- To do section tab ends -->
+           <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+             <div class="d-flex align-items-center justify-content-between border-bottom">
+               <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+               <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
+                 All</small>
+             </div>
+             <ul class="chat-list">
+               <li class="list active">
+                 <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                 <div class="info">
+                   <p>Thomas Douglas</p>
+                   <p>Available</p>
+                 </div>
+                 <small class="text-muted my-auto">19 min</small>
+               </li>
+               <li class="list">
+                 <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                 <div class="info">
+                   <div class="wrapper d-flex">
+                     <p>Catherine</p>
+                   </div>
+                   <p>Away</p>
+                 </div>
+                 <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                 <small class="text-muted my-auto">23 min</small>
+               </li>
+               <li class="list">
+                 <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                 <div class="info">
+                   <p>Daniel Russell</p>
+                   <p>Available</p>
+                 </div>
+                 <small class="text-muted my-auto">14 min</small>
+               </li>
+               <li class="list">
+                 <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                 <div class="info">
+                   <p>James Richardson</p>
+                   <p>Away</p>
+                 </div>
+                 <small class="text-muted my-auto">2 min</small>
+               </li>
+               <li class="list">
+                 <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                 <div class="info">
+                   <p>Madeline Kennedy</p>
+                   <p>Available</p>
+                 </div>
+                 <small class="text-muted my-auto">5 min</small>
+               </li>
+               <li class="list">
+                 <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                 <div class="info">
+                   <p>Sarah Graves</p>
+                   <p>Available</p>
+                 </div>
+                 <small class="text-muted my-auto">47 min</small>
+               </li>
+             </ul>
+           </div>
+           <!-- chat tab ends -->
+         </div>
+       </div>
+       <!-- partial -->
+       <!-- partial:partials/_sidebar.html -->
+       <nav class="sidebar sidebar-offcanvas" id="sidebar">
+         <ul class="nav">
+           <li class="nav-item">
+             <a class="nav-link" href="/admin">
+               <i class="icon-grid menu-icon"></i>
+               <span class="menu-title">Dashboard</span>
+             </a>
+           </li>
+           <li class="nav-item active">
+             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+               <i class="icon-layout menu-icon"></i>
+               <span class="menu-title">Products</span>
+               <i class="menu-arrow"></i>
+             </a>
+             <div class="collapse" id="ui-basic">
+               <ul class="nav flex-column sub-menu">
+                 <li class="nav-item"> <a class="nav-link" href="/admin/productdisplay">View Products</a></li>
+                 <li class="nav-item"> <a class="nav-link" href="/admin/addproduct">Add Products</a></li>
+                 <!-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li> -->
+               </ul>
+             </div>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
+               aria-controls="form-elements">
+               <i class="icon-columns menu-icon"></i>
+               <span class="menu-title">Users</span>
+               <i class="menu-arrow"></i>
+             </a>
+             <div class="collapse" id="form-elements">
+               <ul class="nav flex-column sub-menu">
+                 <li class="nav-item"><a class="nav-link" href="/admin//userdisplay">Display Users</a></li>
+               </ul>
+             </div>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+               <i class="icon-bar-graph menu-icon"></i>
+               <span class="menu-title">Category</span>
+               <i class="menu-arrow"></i>
+             </a>
+             <div class="collapse" id="charts">
+               <ul class="nav flex-column sub-menu">
+                 <li class="nav-item"> <a class="nav-link" href="/admin/displaycategory">View Categories</a></li>
+               </ul>
+             </div>
+           </li>
+           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">Orders</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/allorder">All Orders</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="icon-contract menu-icon"></i>
+              <span class="menu-title">Coupons</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/displaycoupon">Display Coupons</a></li>
+              </ul>
+            </div>
+          </li>
+           <li class="nav-item">
+             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+               <i class="icon-head menu-icon"></i>
+               <span class="menu-title">User Pages</span>
+               <i class="menu-arrow"></i>
+             </a>
+             <div class="collapse" id="auth">
+               <ul class="nav flex-column sub-menu">
+                 <li class="nav-item"> <a class="nav-link" href="/template/pages/samples/login.html"> Login </a></li>
+                 <li class="nav-item"> <a class="nav-link" href="/template/pages/samples/register.html"> Register </a></li>
+               </ul>
+             </div>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+               <i class="icon-ban menu-icon"></i>
+               <span class="menu-title">Error pages</span>
+               <i class="menu-arrow"></i>
+             </a>
+             <div class="collapse" id="error">
+               <ul class="nav flex-column sub-menu">
+                 <li class="nav-item"> <a class="nav-link" href="/template/pages/samples/error-404.html"> 404 </a></li>
+                 <li class="nav-item"> <a class="nav-link" href="/template//samples/error-500.html"> 500 </a></li>
+               </ul>
+             </div>
+           </li>
+           <li class="nav-item">
+            <a class="nav-link" href="/admin/adminlogout">
+              <i class="icon-power menu-icon"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
+         </ul>
+       </nav>
+       <!-- partial -->
+       <div class="main-panel">
+        <div class="container-xl">
+          <div >
+              <!-- <div class="table-wrapper"> -->
+                  
+                  <!-- </div> -->
+                  
+                  <div style="margin-top: 3rem;" class="form-title text-center">
+                      <h2 class="text-dark">Edit Product </h2>
+                      <!-- <span class="text-dark">Use the below form to create new account</span> -->
+                      <br><br>
+                  </div>
+                  
+                  <form name="f1" itemid="f1"  style="justify-content: center;" id="registration" method="post" enctype="multipart/form-data">
+                          <!-- 2 column grid layout with text inputs for the first and last names -->
+                          <div class="row mb-4">
+                            <div class="col">
+                              <div class="form-outline">
+                                <label class="form-label" for="form3Example1">Product Name</label>
+                                <input type="hidden" name="_id" value="<%=value._id%>">
+                                <input name="itemname"  value="<%=value.itemname%>" type="text" id="itemname" class="form-control" />
+                                <p id="itemname1"></p>
+                                
+                                <br>
+                                <br> 
+                              </div>
+                            </div> 
+                           
+                        
+                          <!-- Email input -->
+                          <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example3">Price</label>
+                            <input name="price" value="<%=value.price%>" type="number" id="price" class="form-control"  />
+                            <p id="price1"></p>
+                            
+                          </div>
+
+                          
+
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                              <label class="form-label" for="form3Example3">Offer Price</label>
+                              <input name="originalprice" value="<%=value.originalprice%>" type="number" id="originalprice" class="form-control"  />
+                              <p id="oprice1"></p>
+                              
+                            </div>
+
+
+                            <div class="form-outline ">
+                              <label class="form-label" for="form3Example4">Brand</label>
+                              <input name="brand" type="text" id="brand" value="<%=value.brand%>" class="form-control" />
+                              <p id="brand1"></p>
+                              
+                            </div>
+                        
+                         <style>
+                          .error{
+                            color: red;
+                            font-style: italic;
+                          }
+                         </style>
+      
+                          <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example4">Category</label>
+                            <select  required class="form-control" name="category">
+                              <option >---Select---</option>
+                              <% for(var i =0; i < cat.length; i++) { %>
+                                  <option   value=<%= cat[i]._id %> ><%= cat[i].category %></option>
+                              <% } %>
+                          </select>
+                              
+                            </div>
+      
+      
+                          <!-- Password input -->
+                          <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example4">Description</label>
+                              <input name="description" value="<%=value.description%>" type="text" id="description" class="form-control" />
+                              <p id="description1"></p>
+                              
+                          </div>
+
+
+                          <div class="form-outline ">
+                            <label class="form-label" for="form3Example4">Quantity</label>
+                            <input name="quantity" type="number" value="<%=value.quantity%>"  id="quantity" class="form-control" />
+                            
+                            
+                          </div>
+      
+                        
+                          <label for="">CURENT PROUCT IMAGES</label>
+                          <div class="form-outline mb-4">
+                              <!-- <input name="image1" value="<%=value.image1%>" type="text" id="image" class="form-control" /> -->
+                             <img src="<%=value.image1%>" style="height: 100px; width: 100px;" alt="">
+                              <!-- <input name="image1" value="<%=value.image1%>" type="text" id="image" class="form-control" /> -->
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <img src="<%=value.image2%>" style="height: 100px; width: 100px;" alt="">
+                            </div>
+                            </div>
+                        
+                            
+                            <div class="mt-5  col-md-4"> 
+                              <label for="productimage" class="">
+                                Image
+                              </label>
+                              
+                              <input type="file"  id="id_image1" name="image" accept="image/*" class="form-control" onchange="viewImage1(event)"
+                              style="width:100%;"><br>
+                            <img src="" id="imgView1" alt="" class="clr" style="height:100px">
+                           
+                            <div class="vald-info" id="info"></div>
+                            <h5 class="error_form text-danger" id="image1_error_message"></h5>
+                            <div style="display:flex">
+                              <div id="image-box1" class="clr image-container" style="height: 300px; width:20%"></div>
+                              <button type="button" class="btn btn-outline-info" id="crop-btn1" style=" margin-top: 10px;  display: none;
+                                    width:  50% ; margin: 20rem 0rem 0rem 0rem;">Crop</button> 
+                            </div>
+                          </div>
+                  
+                          <div class="mt-5  col-md-4"> 
+                            <label for="productimage" class="">
+                              Image
+                            </label>
+                            <input type="file" id="id_image2"  name="image" accept="image/*" class="form-control" onchange="viewImage2(event)"
+                            style="width:100%;"><br>
+                          <img src="" id="imgView2" class="clr" alt="" style="height:100px">
+                         
+                          <div class="vald-info" id="info"></div>
+                          <h5 class="error_form text-danger" id="image2_error_message"></h5>
+                          <div  id="image2container" style="display:flex">
+                            <div id="image-box2" class="image-container clr" style="height: 300px; width:20%"></div>
+                            <button type="button" class="btn btn-outline-info" id="crop-btn2" style=" margin-top: 10px; display: none;
+                                  width:  50% ; margin: 20rem 0rem 0rem 0rem;">Crop</button>
+                          </div>
+                        </div>
+                             
+
+                          <!-- Submit button -->
+                          <button type="submit" onclick="return validate()"   class="btn btn-primary btn-block mb-4">Update Item </button>
+                        
+                        
+                        </form>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                    <script>
+                        jQuery.validator.addMethod("noSpace", function(value, element) { 
+    return value == '' || value.trim().length != 0;  
+}, "No space please and don't leave it empty");
+jQuery.validator.addMethod("customEmail", function(value, element) { 
+  return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test( value ); 
+}, "Please enter valid email address!");
+$.validator.addMethod( "alphanumeric", function( value, element ) {
+return this.optional( element ) || /^\w+$/i.test( value );
+}, "Letters, numbers, and underscores only please" );
+                        var $registrationForm = $('#registration');
+if($registrationForm.length){
+  $registrationForm.validate({
+    rules:{
+        itemname: "required",
+        originalprice: "required",
+        price: "required",
+        brand: "required",
+        description: "required",
+        quantity: "required",
+          //username is the name of the textbox
+          itemname: {
+              required: true,
+              //alphanumeric is the custom method, we defined in the above
+              // alphanumeric: true
+          },
+          
+          
+          originalprice: {
+              required: true,
+              
+          },
+
+          price: {
+              required: true,
+              
+          },
+
+          brand: {
+              required: true,
+              
+          },
+
+          description: {
+              required: true,
+          },
+         
+          quantity: {
+              required: true,
+          },
+      },
+      messages:{
+        itemname: {
+              
+              required: 'Please enter Product Name!'
+          },
+          lastname: {
+              //error message for the required field
+              required: 'Please enter lastname!'
+          },
+          originalprice: {
+              required: 'Please enter Price!',
+              
+              email: 'Please enter valid email!'
+          },
+         
+          price: {
+              required: 'Please enter Offer Price',
+              
+              
+          },
+          brand:{
+            required:"Please Enter Brand",
+            
+          },
+          description:{
+            required:"Please Enter Description",
+            
+          },
+          quantity:{
+            required :"Please Enter Quantity"
+          }
+          
+      },
+      
+  });
+}
+                       
+
+
+                    </script>
+                    <script>
+
+                      const imagebox1 = document.getElementById('image-box1')
+                      const crop_btn1 = document.getElementById('crop-btn1')
+                      const input1 = document.getElementById('id_image1')
+                      function viewImage1(event) {
+                      var fileInput1 = document.getElementById('id_image1');
+                      var filePath1 = fileInput1.value;
+                      var allowedExtensions = /(\.jpg)$/i;
+                      if (!allowedExtensions.exec(filePath1)) {
+                        fileInput1.value = '';
+                        swal("There is a problem!", "Please choose image file.");
+                        return false;
+                      } else {
+                        document.getElementById('imgView1').src = URL.createObjectURL(event.target.files[0])
+                      }
+                      }
+                      // When user uploads the image this event will get triggered
+                      input1.addEventListener('change', () => {
+                      // Getting image file object from the input variable
+                      const img_data1 = input1.files[0]
+                      // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+                      // The new object URL represents the specified File object or Blob object.
+                      const url1 = URL.createObjectURL(img_data1)
+                      // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+                      imagebox1.innerHTML = `<img src="${url1}" id="image1" style="width:100%;">`
+                      // Storing that cropping view image in a variable
+                      const image1 = document.getElementById('image1')
+                      // Displaying the image box
+                      document.getElementById('image-box1').style.display = 'block'
+                      // Displaying the Crop buttton
+                      document.getElementById('crop-btn1').style.display = 'block'
+                      document.getElementById('imgView1').style.display = 'block'
+                      // Hiding the Post button
+                      const cropper1 = new Cropper(image1, {
+                        autoCropArea: 1,
+                        viewMode: 1,
+                        scalable: false,
+                        zoomable: false,
+                        movable: false,
+                        minCropBoxWidth: 50,
+                        minCropBoxHeight: 50,
+                        aspectRatio: 1 / 1,
+                      
+                      })
+                      // When crop button is clicked this event will get triggered
+                      crop_btn1.addEventListener('click', () => {
+                        // This method coverts the selected cropped image on the cropper canvas into a blob object
+                        cropper1.getCroppedCanvas().toBlob((blob) => {
+                          // Gets the original image data
+                          let fileInputElement1 = document.getElementById('id_image1');
+                          // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                          let file1 = new File([blob], img_data1.name, { type: "image/*", lastModified: new Date().getTime() });
+                          // Create a new container
+                          let container1 = new DataTransfer();
+                          // Add the cropped image file to the container
+                          container1.items.add(file1);
+                          // Replace the original image file with the new cropped image file
+                          fileInputElement1.files = container1.files;
+                          document.getElementById('imgView1').src = URL.createObjectURL(fileInputElement1.files[0])
+                          // Hide the cropper box
+                          document.getElementById('image-box1').style.display = 'none'
+                          // Hide the crop button
+                          document.getElementById('crop-btn1').style.display = 'none'
+                        })
+                      })
+                      })
+                      const imagebox2 = document.getElementById('image-box2')
+                      const crop_btn2 = document.getElementById('crop-btn2')
+                      const input2 = document.getElementById('id_image2')
+                      function viewImage2(event) {
+                      var fileInput2 = document.getElementById('id_image2');
+                      var filePath2 = fileInput2.value;
+                      var allowedExtensions = /(\.jpg)$/i;
+                      if (!allowedExtensions.exec(filePath2)) {
+                        fileInput1.value = '';
+                        swal("There is a problem!", "Please choose image file.");
+                        return false;
+                      } else {
+                        document.getElementById('imgView2').src = URL.createObjectURL(event.target.files[0])
+                      }
+                      }
+                      // When user uploads the image this event will get triggered
+                      input2.addEventListener('change', () => {
+                      // Getting image file object from the input variable
+                      const img_data2 = input2.files[0]
+                      // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+                      // The new object URL represents the specified File object or Blob object.
+                      const url2 = URL.createObjectURL(img_data2)
+                      // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+                      imagebox2.innerHTML = `<img src="${url2}" id="image2" style="width:100%;">`
+                      // Storing that cropping view image in a variable
+                      const image2 = document.getElementById('image2')
+                      // Displaying the image box
+                      document.getElementById('image-box2').style.display = 'block'
+                      // Displaying the Crop buttton
+                      document.getElementById('crop-btn2').style.display = 'block'
+                      
+                      document.getElementById('imgView2').style.display = 'block'
+                      // Hiding the Post button
+                      const cropper2 = new Cropper(image2, {
+                        autoCropArea: 1,
+                        viewMode: 1,
+                        scalable: false,
+                        zoomable: false,
+                        movable: false,
+                        minCropBoxWidth: 50,
+                        minCropBoxHeight: 50,
+                        aspectRatio: 1 / 1,
+                      
+                      })
+                      // When crop button is clicked this event will get triggered
+                      crop_btn2.addEventListener('click', () => {
+                        // This method coverts the selected cropped image on the cropper canvas into a blob object
+                        cropper2.getCroppedCanvas().toBlob((blob) => {
+                          // Gets the original image data
+                          let fileInputElement2 = document.getElementById('id_image2');
+                          // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                          let file2 = new File([blob], img_data2.name, { type: "image/*", lastModified: new Date().getTime() });
+                          // Create a new container
+                          let container2 = new DataTransfer();
+                          // Add the cropped image file to the container
+                          container2.items.add(file2);
+                          // Replace the original image file with the new cropped image file
+                          fileInputElement2.files = container2.files;
+                          document.getElementById('imgView2').src = URL.createObjectURL(fileInputElement2.files[0])
+                          // Hide the cropper box
+                          document.getElementById('image-box2').style.display = 'none'
+                          // Hide the crop button
+                          document.getElementById('crop-btn2').style.display = 'none'
+                        })
+                      })
+                      })
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      const imagebox3 = document.getElementById('image-box3')
+                      const crop_btn3 = document.getElementById('crop-btn3')
+                      const input3 = document.getElementById('id_image3')
+                      function viewImage3(event) {
+                      var fileInput3 = document.getElementById('id_image3');
+                      var filePath3 = fileInput3.value;
+                      var allowedExtensions = /(\.jpg)$/i;
+                      if (!allowedExtensions.exec(filePath3)) {
+                        fileInput3.value = '';
+                        swal("There is a problem!", "Please choose image file.");
+                        return false;
+                      } else {
+                        document.getElementById('imgView3').src = URL.createObjectURL(event.target.files[0])
+                      }
+                      }
+                      // When user uploads the image this event will get triggered
+                      input3.addEventListener('change', () => {
+                      // Getting image file object from the input variable
+                      const img_data3 = input3.files[0]
+                      // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+                      // The new object URL represents the specified File object or Blob object.
+                      const url3 = URL.createObjectURL(img_data3)
+                      // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+                      imagebox3.innerHTML = `<img src="${url3}" id="image3" style="width:100%;">`
+                      // Storing that cropping view image in a variable
+                      const image3 = document.getElementById('image3')
+                      // Displaying the image box
+                      document.getElementById('image-box3').style.display = 'block'
+                      // Displaying the Crop buttton
+                      document.getElementById('crop-btn3').style.display = 'block'
+                      // Hiding the Post button
+                      const cropper3 = new Cropper(image3, {
+                        autoCropArea: 1,
+                        viewMode: 1,
+                        scalable: false,
+                        zoomable: false,
+                        movable: false,
+                        minCropBoxWidth: 50,
+                        minCropBoxHeight: 50,
+                        
+                          aspectRatio: 1 / 1,
+                         
+                      
+                      })
+                      
+                      // When crop button is clicked this event will get triggered
+                      crop_btn3.addEventListener('click', () => {
+                        // This method coverts the selected cropped image on the cropper canvas into a blob object
+                        cropper3.getCroppedCanvas().toBlob((blob) => {
+                          // Gets the original image data
+                          let fileInputElement3 = document.getElementById('id_image3');
+                          // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                          let file3 = new File([blob], img_data3.name, { type: "image/*", lastModified: new Date().getTime() });
+                          // Create a new container
+                          let container3 = new DataTransfer();
+                          // Add the cropped image file to the container
+                          container3.items.add(file3);
+                          // Replace the original image file with the new cropped image file
+                          fileInputElement3.files = container3.files;
+                          document.getElementById('imgView3').src = URL.createObjectURL(fileInputElement3.files[0])
+                          // Hide the cropper box
+                          document.getElementById('image-box3').style.display = 'none'
+                          // Hide the crop button
+                          document.getElementById('crop-btn3').style.display = 'none'
+                      
+                          document.getElementById('imgView3').style.display = 'block'
+                        })
+                      })
+                      })
+                      
+                      
+                      </script>
+          </div>
+      </div> 
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>   
+
+
+         <!-- content-wrapper ends -->
+         <!-- partial:partials/_footer.html -->
+         <footer class="footer">
+           <div class="d-sm-flex justify-content-center justify-content-sm-between">
+             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a
+                 href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.
+               All rights reserved.</span>
+             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                 class="ti-heart text-danger ml-1"></i></span>
+           </div>
+         </footer>
+         <!-- partial -->
+       </div>
+       <!-- main-panel ends -->
+     </div>
+     <!-- page-body-wrapper ends -->
+   </div>
+   <!-- container-scroller -->
+ 
+   <!-- plugins:js -->
+   <script src="vendors/js/vendor.bundle.base.js"></script>
+   <!-- endinject -->
+   <!-- Plugin js for this page -->
+   <script src="vendors/chart.js/Chart.min.js"></script>
+   <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+   <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+   <script src="js/dataTables.select.min.js"></script>
+ 
+   <!-- End plugin js for this page -->
+   <!-- inject:js -->
+   <script src="js/off-canvas.js"></script>
+   <script src="js/hoverable-collapse.js"></script>
+   <script src="js/template.js"></script>
+   <script src="js/settings.js"></script>
+   <script src="js/todolist.js"></script>
+   <!-- endinject -->
+   <!-- Custom js for this page-->
+   <script src="js/dashboard.js"></script>
+   <script src="js/Chart.roundedBarCharts.js"></script>
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <!-- End custom js for this page-->
+ </body>
+ 
+ </html>
