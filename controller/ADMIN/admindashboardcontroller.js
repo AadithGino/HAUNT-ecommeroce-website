@@ -7,6 +7,7 @@ const { $where } = require("../../models/orderSchema")
 
 exports.dashboardGet = async (req,res)=>{
     if(req.session.admin){
+     try {
       let totalrevenue=0;
       let numberoforder = await orderSchema.find({})
       let numberofuser = await userSchema.find({})
@@ -79,6 +80,9 @@ exports.dashboardGet = async (req,res)=>{
 
       
         res.render("admindashboard",{todaydate,weeklyorder,dailytotalrevenue,weeklytotalrevenue,numberoforder,numberofuser,numberofproduct,totalrevenue,numberofCOD,numberofPayPal,numberofRazorPay,codtotalrevenue,payapaltotalrevenue,razorpaytotalrevenue,numbercancelledorders})
+     } catch (error) {
+      
+     }
       }else{
         res.redirect("/admin/login")
       }

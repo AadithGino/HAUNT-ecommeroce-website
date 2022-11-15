@@ -14,6 +14,7 @@ exports.adminloginGET = (req,res)=>{
 }
 
 exports.adminLoginPost = async (req,res)=>{
+try {
   const email = req.body.email;
   const password = req.body.password;
   const user= await adminSchema.findOne({email:email})
@@ -31,6 +32,9 @@ exports.adminLoginPost = async (req,res)=>{
     loginerrormsg="Admin Not Found"
     res.redirect("/admin/login")
   } 
+} catch (error) {
+  
+}
 }
 
 

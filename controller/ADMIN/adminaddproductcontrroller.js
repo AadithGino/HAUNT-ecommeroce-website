@@ -18,7 +18,8 @@ exports.addproductGet = async (req,res)=>{
 
 
 exports.addproductPost = async (req,res)=>{
-  const uploader = async (path) => await cloudinary.uploads(path, 'Images');
+  try {
+    const uploader = async (path) => await cloudinary.uploads(path, 'Images');
 
   if (req.method === 'POST') {
     const urls = []
@@ -79,4 +80,8 @@ exports.addproductPost = async (req,res)=>{
     })
   }
   res.redirect("/admin/productdisplay")
+  } catch (error) {
+    console.log(err);
+    res.redirect("/admin/productdisplay")
+  }
 }

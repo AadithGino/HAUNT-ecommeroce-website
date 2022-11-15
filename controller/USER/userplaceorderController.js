@@ -39,6 +39,8 @@ var instance = new Razorpay({
 
 
 exports.selectpaymnetGet = async (req,res)=>{
+  try {
+    
   if(req.session.user){
     let discheck = req.query.validate;
     let userid = req.session._id;
@@ -214,10 +216,14 @@ exports.selectpaymnetGet = async (req,res)=>{
   }else{
     res.redirect("/login")
   }
+  } catch (error) {
+    
+  }
 }
 
 exports.placeOlder = async(req,res)=>{
-    let userid  = req.session._id;
+    try {
+      let userid  = req.session._id;
     let products = []
     console.log(req.body.name);
     let payment = req.body.name; 
@@ -573,6 +579,9 @@ exports.placeOlder = async(req,res)=>{
 
       let supercoin = totalprice[0].total/10000;
       console.log(parseInt(supercoin) +"Number Of Super Coin While Placing Order");
+    } catch (error) {
+      
+    }
 
       
       

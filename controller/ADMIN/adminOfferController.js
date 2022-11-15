@@ -7,10 +7,14 @@ let categoryoffererrmsg = "12";
 
 exports.categoryOfferGet = async(req,res)=>{
     if(req.session.admin){ 
-    const category = await categorySchema.find({})      
+   try {
+     const category = await categorySchema.find({})      
     const coupon = await categoryOfferSchema.find({})
     res.render("categoryOffer",{coupon,category,categoryoffererrmsg})
     categoryoffererrmsg="12";
+   } catch (error) {
+    
+   }
     }else{
         res.redirect("/admin/login")
     }
@@ -18,6 +22,7 @@ exports.categoryOfferGet = async(req,res)=>{
 }
 
 exports.addCategoryOffer= async(req,res)=>{
+   try {
     const coupon = req.body.coupon;
 
     const categoryofferexist = await categoryOfferSchema.findOne({categoryid:coupon})
@@ -60,6 +65,9 @@ exports.addCategoryOffer= async(req,res)=>{
 }
     
     res.redirect("/admin/categoryOffer")
+   } catch (error) {
+    
+   }
     
 }
 

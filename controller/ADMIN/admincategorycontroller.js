@@ -23,7 +23,7 @@ exports.deletecategory = async (req,res) =>{
     categorydeleterr="Products in this category exists Delete The Products Or Change Their Category!!"
   }else{
  
-  console.log(categoryid);
+  
   categorySchema.deleteOne({_id:categoryid},(err)=>{
     console.log(err);
   })
@@ -35,8 +35,8 @@ exports.deletecategory = async (req,res) =>{
 
 
 exports.categoryPost = async (req,res)=>{
-  let category = req.body.category;
-  console.log(category);
+  try {
+    let category = req.body.category;
   let catexist = await categorySchema.find({category:{$regex: ".*"+category+".*",$options:'i'}})
   console.log(catexist);
   if(catexist.length!=0){
@@ -46,4 +46,7 @@ exports.categoryPost = async (req,res)=>{
     categorySchema.create({category})
     res.redirect("/admin/displaycategory")
   } 
+  } catch (error) {
+    res.send(error)
+  }
 }
