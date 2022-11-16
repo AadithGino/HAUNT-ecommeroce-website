@@ -11,8 +11,8 @@ const moment = require("moment")
 
 
 
-mongoose.connect('mongodb+srv://hauntuser:9744052977@cluster0.pwwqome.mongodb.net/?retryWrites=true&w=majority')
-// mongoose.connect('mongodb://localhost:27017/HAUNT')
+// mongoose.connect('mongodb+srv://hauntuser:9744052977@cluster0.pwwqome.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb://localhost:27017/HAUNT')
 
 
 // User Routes
